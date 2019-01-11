@@ -1,0 +1,69 @@
+<div style="padding: 20px">
+<h1>Listing all articles</h1>
+
+<style type="text/css">
+
+  dl {
+    display: flex;
+    flex-flow: row wrap;
+    border: solid #333;
+    border-width: 0px 0px 0 0;
+  }
+  dt {
+    flex-basis: 20%;
+    padding: 2px 4px;
+    background: #333;
+    text-align: right;
+    color: #fff;
+  }
+  dd {
+    flex-basis: 70%;
+    flex-grow: 1;
+    margin: 0;
+    padding: 2px 4px;
+    border-bottom: 0px solid #333;
+  }
+
+</style>
+
+
+<%= link_to 'Create New Article', new_article_path, class:"btn btn-primary btn-sm" %>
+<table>
+ <!-- <tr>
+  <th>Title</th>
+  <th>Description</th>
+ </tr> -->
+ <% @articles.each do |article| %>
+ <dl>
+  <dt><%= article.title %></dt> 
+ 
+  <dd><%= article.description %></dd>
+ </dl>
+ 
+ <tr>
+  <td><%= link_to 'Edit', edit_article_path(article) %></td> 
+
+  <td><%= link_to 'Show', article_path(article) %></td>  
+  
+  <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"} %></td>
+ </tr>
+ <br/>
+</table>
+ <% end %>
+</table>
+</div>
+
+
+
+<button class="abc" id="qw">
+  anant
+</button>
+
+
+<script type="text/javascript">
+
+  $("#qw").click(function(){
+    $("#qw").hide()
+  })
+
+</script>

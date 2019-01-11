@@ -1,0 +1,29 @@
+<div style="padding: 20px">
+	<h1>Show Article</h1>
+	<p>
+		 <h3>Title:  <%= @article.title %> </h3>
+	</p>
+	<br/>
+	<h4>
+		<p>
+	 		Description:  <%= @article.description %>
+		</p>
+	</h4>
+	<br/>
+
+	<%= link_to "Edit", edit_article_path(@article) %> &nbsp; &nbsp;
+	<%= link_to 'Back', articles_path %> &nbsp; &nbsp;
+	<%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: "Are you sure you want to delete this article?"} %>
+	<br/>
+	<%= button_to 'Like', article_likes_path(@article), method: :article, class:"btn btn-primary" %>
+
+	<%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%>
+	<br/>
+	<div id="comments_count">
+		<%= render partial: 'comments/form' %>
+		<h3>Comments (<%= @article.comments.size %>)</h3>
+	</div>
+	<div id="article_comment">
+	<%= render partial: 'articles/comment', collection: @article.comments.reverse %>
+	</div>
+</div>
