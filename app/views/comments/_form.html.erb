@@ -2,7 +2,9 @@
 <%= form_for [ @article, @comment ],remote: true do |f| %>
   <p>
     <%= f.label :description %><br/>
+<div id="new_comment">
     <%= f.text_area :description %>
+</div>
   </p>
   <p>
     <%= f.submit 'Submit' %>

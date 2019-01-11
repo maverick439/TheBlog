@@ -3,7 +3,7 @@
   <p class="comment"><%= comment.description %></p>
   <span class="dateandoptions">
   	Posted <%=time_ago_in_words(comment.created_at)%> ago <br/>
-  </span>
+  <%= button_to 'Delete', article_comment_path(@article, comment), method: :delete, remote: true %>
 </div>
 
 

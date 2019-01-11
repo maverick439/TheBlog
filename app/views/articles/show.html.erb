@@ -19,8 +19,8 @@
 
 	<%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%>
 	<br/>
+	<%= render partial: 'comments/form' %>
 	<div id="comments_count">
-		<%= render partial: 'comments/form' %>
 		<h3>Comments (<%= @article.comments.size %>)</h3>
 	</div>
 	<div id="article_comment">

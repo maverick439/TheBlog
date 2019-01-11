@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @article = Article.find(params[:article_id])
   	@comment.article_id = params[:article_id]
   	@comment.user_id = current_user.id
   	@comment.save
@@ -19,17 +20,20 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
-
-    if @comment.user_id == @current_user_id
-      @comment.destroy
-      render json: {}
+    if @comment.user_id == current_user.id
+        @comment.destroy
     else
-      render json: { errors: { comment: ['not owned by user'] } }, status: :forbidden
+        flash[:notice] = "Cannot Delete"
+    end
+    respond_to do |format|
+      format.html {redirect_to article_path(@article)}
+      format.js
     end
   end
 
-  private
+#  private
 
 #  def find_article!
 #    @article = Article.find_by_slug!(params[:article_slug])
@@ -38,6 +42,6 @@ class CommentsController < ApplicationController
   private
 
  	def comment_params
-  		params.require(:comment).permit(:user_id, :description)
+  		params.require(:comment).permit(:description,:article_id,:user_id)
 	end
 end
