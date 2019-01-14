@@ -1,10 +1,17 @@
 class LikesController < ApplicationController
+	skip_before_action :verify_authenticity_token
 	before_action :find_like, only: [:destroy]
 	before_action :find_article
 
 	def create
 		if already_liked?
     		flash[:notice] = "You can't like more than once"
+    		#window.alert("You can't like more than once");
+    		render(
+        		html: "<script>alert('Liked Already')</script>".html_safe,
+        		layout: 'application'
+      		)
+
   		else
 			@article.likes.create(user_id: current_user.id)
 		end	
