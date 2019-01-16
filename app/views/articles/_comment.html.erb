@@ -1,9 +1,12 @@
-<div id="single_comment">
-  <h4>Comment by <%= comment.user.email %></h4>
-  <p class="comment"><%= comment.description %></p>
-  <span class="dateandoptions">
-  	Posted <%=time_ago_in_words(comment.created_at)%> ago <br/>
-  <%= button_to 'Delete', article_comment_path(@article, comment), method: :delete, remote: true %>
+<!-- TO DISPLAY ALL THE COMMENTS IN THE SHOW PAGE WITH EDIT & DELETE -->
+<div id="comment-<%=comment.id%>">
+	<div id="single_comment">
+	    <h4>Comment by <%= comment.user.email%></h4> 
+	    <p class="comment"><%= comment.description %></p>
+	    <span class="dateandoptions">
+		  Posted <%=time_ago_in_words(comment.created_at)%> ago <br/>
+		  <%= button_to 'Delete', article_comment_path(@article, comment), method: :delete, remote: true %>
+		  <%= button_to 'Edit', edit_article_comment_path(@article, comment), method: :get, remote: true %>
+		</span>
+	</div>
 </div>
-
-

@@ -1,5 +1,7 @@
+<!-- Form for Posting The comment -->
+
 <h3>Post a Comment</h3>
-<%= form_for [ @article, @comment ],remote: true do |f| %>
+<%= form_for [article, comment], remote: true do |f| %>
   <p>
     <%= f.label :description %><br/>
 <div id="new_comment">

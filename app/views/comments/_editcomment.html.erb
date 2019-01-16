@@ -1,0 +1,13 @@
+<!-- TO EDIT COMMENT IN THE SHOW PAGE -->
+
+<div id="comment-form">
+<%= form_for([@article, @comment || @article.comments.build], remote: true) do |f| %>
+    <div>
+      <%= f.text_field :description, class: 'form-control commentbox', autofocus: true, :id => 'commentbox' %>
+    </div>
+
+    <div style="padding-top:20px;">
+       <%= f.submit "update comment",class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+ </div>

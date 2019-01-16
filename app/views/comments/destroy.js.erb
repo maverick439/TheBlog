@@ -1,1 +1,2 @@
-$('#single_comment').remove();
+$('#comments_count').html("<%= escape_javascript(pluralize(@article.comments.size,'Comment')) %>");
+$('#comment-<%=@comment.id%>').remove();

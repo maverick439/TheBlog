@@ -19,11 +19,17 @@
 
 	<%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%>
 	<br/>
-	<%= render partial: 'comments/form' %>
+
+	<!-- TO DISPLAY ALL THE COMMENTS COMMENTS->_FORM.HTML.ERB -->
+	<div id="create-comment">
+	<%= render partial: 'comments/form', locals: {article: @article, comment: @comment} %> 
+ 	</div>
+ 	
 	<div id="comments_count">
 		<h3>Comments (<%= @article.comments.size %>)</h3>
 	</div>
+
 	<div id="article_comment">
-	<%= render partial: 'articles/comment', collection: @article.comments.reverse %>
+	<%= render partial: 'articles/comment', locals: {comment: @comment}, collection: @article.comments.reverse %>
 	</div>
 </div>
