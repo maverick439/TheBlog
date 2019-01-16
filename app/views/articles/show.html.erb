@@ -15,9 +15,12 @@
 	<%= link_to 'Back', articles_path %> &nbsp; &nbsp;
 	<%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: "Are you sure you want to delete this article?"} %>
 	<br/>
-	<%= button_to 'Like', article_likes_path(@article), method: :article, class:"btn btn-primary" %>
-
+	<div id="create-likes">
+	<%= button_to 'Like', article_likes_path(@article), method: :article, class:"btn btn-primary",remote: true %>
+	</div>
+	<div id="likes-count">
 	<%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%>
+	</div>
 	<br/>
 
 	<!-- TO DISPLAY ALL THE COMMENTS COMMENTS->_FORM.HTML.ERB -->

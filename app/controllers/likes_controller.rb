@@ -4,18 +4,21 @@ class LikesController < ApplicationController
 	before_action :find_article
 
 	def create
-		if already_liked?
-    		flash[:notice] = "You can't like more than once"
-    		#window.alert("You can't like more than once");
-    		render(
-        		html: "<script>alert('Liked Already')</script>".html_safe,
-        		layout: 'application'
-      		)
-
-  		else
-			@article.likes.create(user_id: current_user.id)
-		end	
-		redirect_to article_path(@article)
+		#@article = Article.find(params[:id])
+		if find_article
+			if already_liked?
+	    		flash[:notice] = "You can't like more than once"
+	    		render(
+	        		html: "<script>alert('Liked Already')</script>".html_safe,
+	        		layout: 'application'
+	      		)
+	  		else
+				@like = Like.new(user_id: current_user.id,article_id: @article.id)
+				#@article.likes.create(user_id: current_user.id)
+				@like.save
+				redirect_to article_path(@article)
+			end	
+		end
 	end
 
 	def destroy
@@ -25,8 +28,10 @@ class LikesController < ApplicationController
     		@like.destroy
   		end
   		redirect_to article_path(@article)
-end
+	end
+	
 	private
+
 	def find_like
    		@like = @article.likes.find(params[:id])
 	end
