@@ -4,8 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.0'
 
 gem 'bootstrap'
-
+gem 'figaro'
+gem 'aws-sdk','<2.0'
 gem 'paperclip'
+gem 'config'
 
 gem 'devise'
 
@@ -55,6 +57,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'aws-sdk-s3', '~> 1.0.0.rc2'
+
 end
 
 group :test do
